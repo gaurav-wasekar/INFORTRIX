@@ -1,0 +1,41 @@
+1) Launch an EC2 Instance:
+
+   firstly Go to the AWS Management Console.
+    Navigate to the EC2 service.
+    Click on "Instances" and then "Launch Instances."
+    Select an ubuntu Amazon Machine Image (AMI), configure instance t2.micro , network settings, security groups, and key pair.
+    Go security groups and add inbond rule port no 3306 for mysql and 80 for http for incoming trafic
+2) Connect to your EC2 Instance:
+
+    Use SSH to  EC2 instance using the key pair by using putty software.
+
+3) Than install LAMP Stack (Linux, Apache, MySQL, PHP):
+
+    Update the system's package repository: sudo apt update
+     To install apache command sudo apt install apache2 
+     To install mysql and php command sudo apt mysql-server php php-mysql
+
+4) Than Configure MySQL:
+     Run mysql_secure_installation to set up MySQL root password and secure the installation.
+     For set Password :- mysql -u root -p
+                         ALTER USER 'root'@'localhost' IDENTIFIED WITH 'mysql_native_password' BY '<new_password>';
+5) Create a MySQL Database :
+
+    Log in to MySQL: mysql -u root -p.
+    Create a new database for WordPress: CREATE DATABASE wordpressdb;.
+ 
+6) Download WordPress:
+     Download the latest version of WordPress to the EC2 instance:
+     FIRSTLY GO TO THE HTML PAGE:- cd /var/www/html/
+     Than install wordpress:- sudo wget https://wordpress.org/latest.tar.gz
+     Than extrct the file:-  sudo tar -xzvf latest.tar.gz
+ Create a WordPress configuration file:
+     sudo mv /var/www/html/wordpress/wp-config-sample.php /var/www/html/wordpress/wp-config.php
+     sudo nano /var/www/html/wordpress/wp-config.php
+    Than open file sudo nano /var/www/html/wordpress/wp-config.php
+     And change the database name, user name and pssword.
+    Than change ownership
+    sudo chown -R www-data:www-data /var/www/html/wordpress
+
+7) Than select the public ip and copy than pest on webserver ex:- 0.0.0.0/wordpress
+
